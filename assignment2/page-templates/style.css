@@ -1,0 +1,154 @@
+body {
+	width:100%;
+	margin:0;
+	background-color:#f3f3f3;
+	padding-bottom:70px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+	padding-top:140px;
+}
+
+h1 {
+	padding-left:10px;
+}
+
+h1, h2, h3 {
+	color:#333;
+}
+
+
+.nav {
+	padding-top:20px;
+	padding-bottom:20px;
+	position:fixed;
+	width:100%;
+	background-color:rgba(51,51,51,.95);
+	margin:0px 0px 0 0px;
+}
+
+/*This is one of the elemets using float
+  for css requirement # 2*/
+.nav ul {
+	float:right;
+	display:inline;
+	padding-right:30px;
+}
+
+/*This is one of the elemets using float
+  for css requirement # 2*/
+.nav img {
+	float:left;
+	padding-left:5px;
+}
+
+.nav ul li {
+	display: inline-block;
+	padding-left: 20px;
+}
+
+.nav a {
+	text-decoration: none;
+	color:white;	
+}
+.nav a:hover {
+	text-decoration: underline;
+}
+
+.register {
+	width:100%;
+}
+#registerForm {
+	padding:30px;
+	background-color:#333;
+	width: 50%;
+    margin: 0 auto;
+}
+
+#registerForm input, #registerForm textarea {
+	padding:10px 0 10px 0;
+	margin-bottom:10px;
+	width:100%;
+}
+
+#registerForm dd, #registerForm dt {
+	float:left;
+	margin:0;
+}
+#registerForm dd {
+	width:70%;
+}
+#registerForm dt {
+	width:30%;
+}
+
+.items, .items ul {
+	width:100%;
+	margin:0;
+}
+.items li, .listings li, .bought li{
+	height:126px;
+	list-style-type: none;
+	margin-bottom:25px;
+}
+
+.registerText {
+	font-size: 1em;
+	color: #f3f3f3;
+}
+
+/* This has margin, border, and padding
+   for css requirement # 1
+ */
+.items img, .listings img, .bought img {
+	margin:0;
+	padding-right: 10px;
+	border:0;
+	float:left;
+}
+
+.item {
+	height: 125px;
+	display: inline;
+}
+
+.itemTitle {
+	font-size: 1.5em;
+}
+
+/* This has margin, border, and padding
+   for css requirement # 1
+ */
+#newListing {
+	background-color:#333;
+	margin:5px;
+	padding:15px;
+	border:10px solid #fff;
+}
+#newListing input, #newListing textarea {
+	padding:10px 0 10px 0;
+	margin-bottom:10px;
+	width:100%;
+}
+
+#newListing dd, #newListing dt {
+	float:left;
+	margin:0;
+}
+#newListing dd {
+	width:70%;
+}
+#newListing dt {
+	width:30%;
+}
+
+/* This has several rule sets
+   for css requirement#3
+*/
+.register h1 {
+	font-size: 4em;
+	color:#666;
+	text-shadow: 4px 4px #333;
+	text-align: center;
+}
