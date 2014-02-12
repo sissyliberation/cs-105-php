@@ -17,6 +17,10 @@ $sth->execute();
 
 $result = $sth->fetchAll();
 
+$f_name = $dbh->prepare("SELECT FORENAME FROM PERSON WHERE PERSON_ID = 1");
+$f_name->execute(); 
+
+$res_name = $f_name->fetchColumn();
 
 echo '
 <!DOCTYPE html>
@@ -24,6 +28,7 @@ echo '
 <head>
   <meta charset="utf-8"/>
   <title>Welcome</title>
+  <link rel="shortcut icon" href="favicon.ico">
   <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
   <link href="style.css" rel="stylesheet">
 </head>
@@ -39,7 +44,7 @@ echo '
   </div>
   <div class="wrapper">
     <div class="landing_page">
-      <h1>Welcome, username</h1>
+      <h1>Welcome, '; echo $res_name; echo'</h1>
     </div>
     <div class="items">';
     echo '<select style="margin-bottom:20px;"><option value="0">All</option>';

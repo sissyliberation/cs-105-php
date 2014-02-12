@@ -12,7 +12,7 @@ try {
         PDO::ATTR_PERSISTENT => true
     ));
 
-    $sth = $dbh->prepare("SELECT ITEM_CAPTION, ITEM_DESCRIPTION FROM AUCTION");
+    $sth = $dbh->prepare("SELECT ITEM_CAPTION, ITEM_DESCRIPTION FROM AUCTION WHERE SELLER = 1");
     $sth->execute();
 
     $result = $sth->fetchAll();
@@ -24,6 +24,7 @@ try {
     <head>
       <meta charset="utf-8"/>
       <title>Listings</title>
+      <link rel="shortcut icon" href="favicon.ico">
       <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
       <link href="style.css" rel="stylesheet">
     </head>
@@ -57,22 +58,58 @@ try {
               <input type="button" value="Cancel" ></li>';
       }
   echo '</ul>
-      <h1>Add New Listing</h1>
-      <form id="newListing">
-        <dl>
-          <dt><span class="registerText">Name: </span></dt>
-          <dd><input placeholder="Name"></dd>
+      <h1>Add New Listing</h1>';
 
-          <dt><span class="registerText">Last: </span></dt>
-          <dd><input placeholder="Bid"></dd>
+      $action=$_REQUEST['action']; 
+      if ($action=="")  {
+   
+        echo '      
+        <form method="post" action="" id="newListing" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="submit">
+          <dl>
+            <dt><span class="registerText">Title: </span></dt>
+            <dd><input name="title" placeholder="Title"></dd>
 
-          <dt><span class="registerText">Username: </span></dt>
-          <dd><input placeholder="descriptionS"></dd>
-        </dl>
-        <input type="file" name="datafile" size="40">
-        <button>submit</button>
-      </form>
-    </div>
+            <dt><span class="registerText">Description: </span></dt>
+            <dd><input name="description" placeholder="description"></dd>
+
+            <dt><span class="registerText">Starting Bid: </span></dt>
+            <dd><input name="bid" placeholder="Bid"></dd>
+
+            <dt><span class="registerText">Category Num: </span></dt>
+            <dd><input name="category" placeholder="Category Num"></dd>
+
+          </dl>
+          <input type="file" name="datafile" size="40">
+          <button>submit</button>
+        </form>';
+      }  
+      else { 
+        $title=$_REQUEST['title']; 
+        $bid=$_REQUEST['bid']; 
+        $description=$_REQUEST['description'];
+        $category=$_REQUEST['category'];
+
+        if ($title==""||$bid==""||$description==""||$category=="") {
+          echo "<h2>All fields are required, please refresh and fill the form again.</h2>"; 
+        }
+        else {
+          $counter = $dbh->prepare("SELECT COUNT(*) as id FROM AUCTION");
+          $counter->execute(); 
+          $count = $counter->fetchColumn();
+          ++$count;
+
+          $new_listing = "INSERT INTO AUCTION VALUES ($count, 1, 1, '2014-02-10 16:00:00', '2014-02-20 23:00:00', '$category', '$title', '$description', NULL)";
+          echo $new_listing;
+
+          $insert_listing = $dbh->prepare($new_listing);
+          $insert_listing->execute();
+
+          echo "<h2>New Listing Added!</h2>"; 
+        } 
+      }   
+
+    echo '</div>
   </div>
 </body>
 </html>';
